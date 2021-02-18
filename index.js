@@ -185,6 +185,16 @@ class MPlayer extends EventEmitter{
   adjustAudio(seconds){
     this.player.cmd('audio_delay', [seconds]);
   }
+
+  mediaLength(){
+    return new Promise(function(resolve){
+        this.player.cmd('get_time_length');
+
+        this.player.once('medialength', function(time){
+            resolve(time);
+        }.bind(this));
+    }.bind(this))
+  }
 }
 
 module.exports = MPlayer;
