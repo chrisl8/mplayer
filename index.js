@@ -14,7 +14,7 @@ class MPlayer extends EventEmitter{
 
     this.options = Defaults(options || {}, defaults);
 
-    this.player = new Player(options);
+    this.player = new Player(this.options);
     this.status = {
       muted: false,
       playing: false,
